@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | WSlide Marketing</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">WSlide Marketing</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact-section">
+    <h1>Contact Us</h1>
+    <p>Interested in growing your Minecraft, Roblox, or gaming server?</p>
+    <p>Reach out directly on Discord:</p>
+
+    <div class="discord-box">
+      <h2>@wslideyt</h2>
+      <p>Click below to copy username</p>
+      <button onclick="copyDiscord()">Copy Discord</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 WSlide Marketing. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function copyDiscord() {
+      navigator.clipboard.writeText('wslideyt');
+      alert('Copied Discord username: wslideyt');
+    }
+  </script>
+</body>
+</html>
