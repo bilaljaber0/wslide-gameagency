@@ -1,53 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WSlide Game Agency</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSLIDE - Gaming Marketing Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a0b2e 0%, #0a0a0f 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #6366f1;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 5%;
+            text-align: center;
+            background: rgba(99, 102, 241, 0.05);
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+        .service-card:nth-child(7) { animation-delay: 0.7s; }
+        .service-card:nth-child(8) { animation-delay: 0.8s; }
+        .service-card:nth-child(9) { animation-delay: 0.9s; }
+        .service-card:nth-child(10) { animation-delay: 1s; }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">WSlide<span>Agency</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Grow Your <span>Game Server</span></h1>
-      <p>We specialize in marketing and growth for Minecraft, Roblox, and other online gaming communities.</p>
-      <a href="contact.html" class="btn">Get Started</a>
-    </div>
-  </section>
+    <header>
+        <div class="logo">WSLIDE</div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="cta-btn">Get Started</a>
+    </header>
 
-  <section class="about">
-    <h2>Why Choose Us?</h2>
-    <p>
-      WSlide Game Agency helps game servers grow faster and build loyal player communities through modern social media marketing, influencer campaigns, and targeted ads.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Social Media Growth</h3>
-        <p>We run paid ad campaigns, social media promotions, and viral content strategies for your gaming brand.</p>
-      </div>
-      <div class="card">
-        <h3>Server Branding</h3>
-        <p>Professional visuals, logos, and trailer editing that attract players instantly.</p>
-      </div>
-      <div class="card">
-        <h3>Community Expansion</h3>
-        <p>Engage and grow your player base with Discord community building and event management.</p>
-      </div>
-    </div>
-  </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Level Up Your <span class="gradient-text">Gaming Community</span></h1>
+            <p>We help gaming servers, developers, and communities grow through strategic marketing, Discord optimization, and influencer partnerships.</p>
+            <a href="#contact" class="cta-btn">Launch Your Campaign</a>
+        </div>
+    </section>
 
-  <footer>
-    <p>© 2025 WSlide Game Agency | Built for creators and gamers</p>
-  </footer>
+    <section class="services" id="services">
+        <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🎯</div>
+                <h3>Social Media Management</h3>
+                <p>Run and grow Discord, Twitter/X, Instagram, and TikTok. Post clips, updates, memes, and engage with your community.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🚀</div>
+                <h3>Discord Growth & Optimization</h3>
+                <p>Setup or redesign servers with roles, bots, channels. Run competitions and automate moderation systems.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🎮</div>
+                <h3>Influencer & Streamer Promotion</h3>
+                <p>Connect with YouTubers, Twitch, and TikTok creators. Offer promo packages and track engagement.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">💡</div>
+                <h3>Ad Campaigns</h3>
+                <p>Setup paid ads on Google, TikTok, Discord, Reddit. Create banners, videos, and optimize for player growth.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🧩</div>
+                <h3>Branding & Graphics</h3>
+                <p>Create logos, banners, thumbnails, and animated trailers for your Minecraft or Roblox server.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">📈</div>
+                <h3>SEO for Server Websites</h3>
+                <p>Optimize your server site for Google, TopG, and Minecraft-Server.net visibility.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🧨</div>
+                <h3>Event Marketing</h3>
+                <p>Plan and promote tournaments, giveaways, and challenges. Create hype across all platforms.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">💬</div>
+                <h3>Community Engagement</h3>
+                <p>Manage polls, Q&A sessions, contests, and feedback. Keep players active and loyal.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🪙</div>
+                <h3>Monetization Help</h3>
+                <p>Setup storefronts and build marketing strategies to boost sales with limited-time offers.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🌍</div>
+                <h3>Content Creation</h3>
+                <p>Edit and post highlight reels, cinematic trailers, and TikToks from your community gameplay.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h2>1M+</h2>
+                <p>Players Reached</p>
+            </div>
+            <div class="stat-item">
+                <h2>500+</h2>
+                <p>Servers Grown</p>
+            </div>
+            <div class="stat-item">
+                <h2>50+</h2>
+                <p>Active Campaigns</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Ready to <span class="gradient-text">Dominate</span>?</h2>
+        <p>Let's turn your gaming community into a thriving empire.</p>
+        <a href="mailto:contact@wslide.com" class="cta-btn">Contact Us</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
+    </footer>
 </body>
 </html>

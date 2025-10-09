@@ -1,48 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services - WSlide Game Agency</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - WSLIDE Gaming Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a0b2e 0%, #0a0a0f 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #6366f1;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .hero-small {
+            padding: 10rem 5% 4rem;
+            text-align: center;
+        }
+
+        .hero-small h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-small p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-detailed {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-detail {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-detail:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+        }
+
+        .service-detail h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-detail .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+        }
+
+        .service-detail ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-detail li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .service-detail li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-size: 1.5rem;
+        }
+
+        .pricing-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .service-detail {
+                padding: 2rem;
+            }
+
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">WSlide<span>Agency</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html" class="active">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
 
-  <section class="page-header">
-    <h1>Our Services</h1>
-    <p>Everything you need to grow your Minecraft, Roblox, or gaming server community.</p>
-  </section>
+    <header>
+        <a href="index.html" class="logo">WSLIDE</a>
+        <nav>
+            <a href="services.html" class="active">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="contact.html" class="cta-btn">Get Started</a>
+    </header>
 
-  <section class="services-list">
-    <div class="service">
-      <h2>Minecraft Server Marketing</h2>
-      <p>Boost visibility through social media ads, influencer partnerships, and SEO targeting Minecraft players.</p>
-    </div>
-    <div class="service">
-      <h2>Roblox Promotion Campaigns</h2>
-      <p>We grow your Roblox experience through TikTok, YouTube Shorts, and Discord engagement strategies.</p>
-    </div>
-    <div class="service">
-      <h2>Server Branding & Design</h2>
-      <p>Custom logos, trailers, thumbnails, and brand kits that make your project look official.</p>
-    </div>
-    <div class="service">
-      <h2>Social Media Management</h2>
-      <p>We handle your TikTok, YouTube, and Discord content so you can focus on running your server.</p>
-    </div>
-  </section>
+    <section class="hero-small">
+        <h1>Our <span class="gradient-text">Services</span></h1>
+        <p>Complete marketing solutions designed specifically for gaming communities, servers, and developers.</p>
+    </section>
 
-  <footer>
-    <p>© 2025 WSlide Game Agency | Marketing that levels up your game</p>
-  </footer>
+    <section class="services-detailed">
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🎯</div>
+                <div>
+                    <h2>Social Media Management</h2>
+                    <p class="subtitle">Grow your presence across all platforms</p>
+                </div>
+            </div>
+            <ul>
+                <li>Full management of Discord, Twitter/X, Instagram, and TikTok accounts</li>
+                <li>Daily content posting including clips, server updates, memes, and highlights</li>
+                <li>Active community engagement through comments and DMs</li>
+                <li>Content calendar planning and scheduling</li>
+                <li>Analytics tracking and monthly performance reports</li>
+            </ul>
+            <span class="pricing-tag">Starting at $500/month</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🚀</div>
+                <div>
+                    <h2>Discord Growth & Optimization</h2>
+                    <p class="subtitle">Transform your Discord into a thriving hub</p>
+                </div>
+            </div>
+            <ul>
+                <li>Complete server setup or redesign with custom roles, channels, and permissions</li>
+                <li>Bot integration and automation for moderation and events</li>
+                <li>Invite competitions and giveaway campaigns to boost member count</li>
+                <li>Welcome systems and onboarding flows</li>
+                <li>Server analytics and growth strategies</li>
+            </ul>
+            <span class="pricing-tag">Starting at $300</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🎮</div>
+                <div>
+                    <h2>Influencer & Streamer Promotion</h2>
+                    <p class="subtitle">Connect with content creators who matter</p>
+                </div>
+            </div>
+            <ul>
+                <li>Outreach to YouTubers, Twitch streamers, and TikTok creators</li>
+                <li>Custom promo packages and sponsorship deals</li>
+                <li>Campaign management and creator coordination</li>
+                <li>Performance tracking with engagement metrics and ROI</li>
+                <li>Long-term partnership development</li>
+            </ul>
+            <span class="pricing-tag">Starting at $800/campaign</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">💡</div>
+                <div>
+                    <h2>Paid Ad Campaigns</h2>
+                    <p class="subtitle">Target gamers where they hang out</p>
+                </div>
+            </div>
+            <ul>
+                <li>Strategic ad campaigns on Google, TikTok, Discord, and Reddit</li>
+                <li>Creative design for banners, videos, and ad copy</li>
+                <li>Audience targeting and demographic research</li>
+                <li>Budget optimization and A/B testing</li>
+                <li>Conversion tracking and analytics reporting</li>
+            </ul>
+            <span class="pricing-tag">Starting at $1000 + ad spend</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🧩</div>
+                <div>
+                    <h2>Branding & Graphics</h2>
+                    <p class="subtitle">Make your brand unforgettable</p>
+                </div>
+            </div>
+            <ul>
+                <li>Custom logo design and brand identity</li>
+                <li>Social media banners, thumbnails, and profile graphics</li>
+                <li>Server icons and Discord branding packages</li>
+                <li>Animated trailers and intro videos</li>
+                <li>Marketing materials and promotional graphics</li>
+            </ul>
+            <span class="pricing-tag">Starting at $200</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">📈</div>
+                <div>
+                    <h2>SEO for Server Websites</h2>
+                    <p class="subtitle">Get discovered on Google and server lists</p>
+                </div>
+            </div>
+            <ul>
+                <li>Search engine optimization for server websites</li>
+                <li>Listing optimization on TopG, Minecraft-Server.net, and server directories</li>
+                <li>Keyword research and title/description optimization</li>
+                <li>Technical SEO improvements and site speed optimization</li>
+                <li>Monthly ranking reports and competitor analysis</li>
+            </ul>
+            <span class="pricing-tag">Starting at $400/month</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🧨</div>
+                <div>
+                    <h2>Event Marketing</h2>
+                    <p class="subtitle">Create hype that drives participation</p>
+                </div>
+            </div>
+            <ul>
+                <li>Tournament planning and promotion</li>
+                <li>Giveaway campaigns and contest management</li>
+                <li>Multi-platform marketing blitz for events</li>
+                <li>Countdown timers, teaser content, and announcement strategies</li>
+                <li>Post-event recap and highlight content</li>
+            </ul>
+            <span class="pricing-tag">Starting at $600/event</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">💬</div>
+                <div>
+                    <h2>Community Engagement</h2>
+                    <p class="subtitle">Keep your players active and loyal</p>
+                </div>
+            </div>
+            <ul>
+                <li>Interactive polls, Q&A sessions, and feedback collection</li>
+                <li>Weekly contests and community challenges</li>
+                <li>Player spotlight features and recognition programs</li>
+                <li>Community moderation and conflict resolution</li>
+                <li>Engagement analytics and retention strategies</li>
+            </ul>
+            <span class="pricing-tag">Starting at $450/month</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🪙</div>
+                <div>
+                    <h2>Monetization Help</h2>
+                    <p class="subtitle">Turn your community into revenue</p>
+                </div>
+            </div>
+            <ul>
+                <li>Storefront setup and optimization</li>
+                <li>Rank and package design with pricing strategies</li>
+                <li>Limited-time offers and VIP perk campaigns</li>
+                <li>Sales funnel development and conversion optimization</li>
+                <li>Revenue tracking and growth recommendations</li>
+            </ul>
+            <span class="pricing-tag">Starting at $500 + 10% commission</span>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon">🌍</div>
+                <div>
+                    <h2>Content Creation</h2>
+                    <p class="subtitle">Professional content that captures attention</p>
+                </div>
+            </div>
+            <ul>
+                <li>Video editing for highlight reels and gameplay clips</li>
+                <li>Cinematic trailers and promotional videos</li>
+                <li>TikTok and short-form content creation</li>
+                <li>Stream highlights and compilation videos</li>
+                <li>Thumbnail and video graphics design</li>
+            </ul>
+            <span class="pricing-tag">Starting at $100/video</span>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-

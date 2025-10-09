@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - WSLIDE Gaming Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a0b2e 0%, #0a0a0f 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #6366f1;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .hero-small {
+            padding: 10rem 5% 4rem;
+            text-align: center;
+        }
+
+        .hero-small h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 5%;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .about-section {
+                padding: 2rem;
+            }
+
+            .stats-grid, .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
+
+    <header>
+        <a href="index.html" class="logo">WSLIDE</a>
+        <nav>
+            <a href="services.html">Services</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="contact.html" class="cta-btn">Get Started</a>
+    </header>
+
+    <section class="hero-small">
+        <h1>About <span class="gradient-text">WSLIDE</span></h1>
+    </section>
+
+    <div class="about-content">
+        <div class="about-section">
+            <h2>Who We Are</h2>
+            <p>WSLIDE is a specialized gaming marketing agency built by gamers, for gamers. We understand the unique challenges that gaming communities face because we've been there ourselves. From launching Minecraft servers to growing Discord communities, we know what it takes to turn a small project into a thriving empire.</p>
+            <p>We're not just marketers—we're players, community builders, and content creators who live and breathe gaming culture. This gives us an edge in understanding your audience, crafting authentic messaging, and deploying strategies that actually work in the gaming space.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h3>1M+</h3>
+                <p>Players Reached</p>
+            </div>
+            <div class="stat-box">
+                <h3>500+</h3>
+                <p>Servers Grown</p>
+            </div>
+            <div class="stat-box">
+                <h3>50+</h3>
+                <p>Active Campaigns</p>
+            </div>
+            <div class="stat-box">
+                <h3>98%</h3>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>Our mission is simple: help gaming communities reach their full potential. Whether you're running a small Minecraft SMP or managing a massive Roblox game with thousands of daily players, we provide the marketing expertise you need to grow, engage, and monetize your community effectively.</p>
+            <p>We believe that every gaming project deserves professional marketing support, not just the big studios. That's why we offer flexible packages and scalable solutions that work for communities at every stage of growth.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Why Choose WSLIDE?</h2>
+            <p>The gaming industry is unlike any other. Traditional marketing agencies don't understand Discord culture, influencer dynamics, or how to engage Gen Z and Gen Alpha gamers. We do.</p>
+            <p>We've helped Minecraft servers grow from 10 players to 1,000+, assisted Roblox developers in reaching the front page, and managed Discord communities with tens of thousands of active members. We know what content resonates, which platforms matter, and how to turn casual players into loyal community members.</p>
+            <p>When you work with WSLIDE, you're not getting generic marketing advice—you're getting battle-tested strategies designed specifically for gaming communities.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎮</div>
+                    <h3>Gamers First</h3>
+                    <p>We're gamers ourselves. We understand your community because we're part of it.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💯</div>
+                    <h3>Authentic Growth</h3>
+                    <p>No bots, no fake engagement. We build real communities that last.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>Results Driven</h3>
+                    <p>We measure success by your growth, not vanity metrics.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Partnership</h3>
+                    <p>Your success is our success. We're in this together for the long haul.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <h2>Ready to <span class="gradient-text">Level Up</span>?</h2>
+        <p>Let's discuss how we can help grow your gaming community.</p>
+        <a href="contact.html" class="cta-btn">Contact Us</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
+    </footer>
+</body>
+</html>

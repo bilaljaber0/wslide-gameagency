@@ -1,34 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - WSlide Game Agency</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - WSLIDE Gaming Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at top, #1a0b2e 0%, #0a0a0f 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #6366f1;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .contact-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact-container h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-container > p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 3rem;
+        }
+
+        .discord-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .discord-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+        }
+
+        .discord-card:hover::before {
+            opacity: 1;
+        }
+
+        .discord-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discord-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discord-username {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .discord-username:hover {
+            background: rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.6);
+        }
+
+        .copy-icon {
+            margin-left: 0.8rem;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .discord-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discord-button {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discord-button:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+        }
+
+        .info-text {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-text p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .response-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .response-time span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .discord-card {
+                padding: 2rem;
+            }
+
+            .discord-username {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .contact-hero {
+                padding: 6rem 5% 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">WSlide<span>Agency</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </header>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
 
-  <section class="page-header">
-    <h1>Contact Us</h1>
-    <p>Ready to grow your game server? Reach out to us directly on Discord.</p>
-  </section>
+    <header>
+        <a href="index.html" class="logo">WSLIDE</a>
+        <nav>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <a href="contact.html" class="cta-btn">Get Started</a>
+    </header>
 
-  <section class="contact-info">
-    <h2>Discord</h2>
-    <p>Add us: <strong>wslideyt</strong></p>
-  </section>
+    <section class="contact-hero">
+        <div class="contact-container">
+            <h1>Let's <span class="gradient-text">Connect</span></h1>
+            <p>Ready to take your gaming community to the next level? Reach out on Discord and let's talk.</p>
 
-  <footer>
-    <p>© 2025 WSlide Game Agency | Let’s grow your server together</p>
-  </footer>
+            <div class="discord-card">
+                <div class="discord-icon">💬</div>
+                <h2>Add Me on Discord</h2>
+                
+                <div class="discord-username" onclick="copyUsername()">
+                    wslidebiz
+                    <span class="copy-icon">📋</span>
+                </div>
+
+                <p>Click the username above to copy it, then add me on Discord to start the conversation. I typically respond within a few hours!</p>
+
+                <a href="https://discord.com" class="discord-button" target="_blank">Open Discord</a>
+
+                <div class="info-text">
+                    <p><strong>What to include in your message:</strong></p>
+                    <p>• Your server/game name and platform (Minecraft, Roblox, etc.)</p>
+                    <p>• Current player count or community size</p>
+                    <p>• What services you're interested in</p>
+                    <p>• Your goals and timeline</p>
+                </div>
+
+                <div class="response-time">
+                    <span></span>
+                    Usually responds within 2-4 hours
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="toast" id="toast">✓ Username copied to clipboard!</div>
+
+    <footer>
+        <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyUsername() {
+            const username = 'wslidebiz';
+            
+            navigator.clipboard.writeText(username).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+    </script>
 </body>
 </html>
-
