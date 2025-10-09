@@ -226,8 +226,24 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+
             nav {
-                display: none;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .cta-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
             }
 
             .about-section {
@@ -249,7 +265,6 @@
         <nav>
             <a href="services.html">Services</a>
             <a href="about.html" class="active">About</a>
-            <a href="contact.html">Contact</a>
         </nav>
         <a href="contact.html" class="cta-btn">Get Started</a>
     </header>
