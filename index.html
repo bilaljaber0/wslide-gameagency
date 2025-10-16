@@ -94,6 +94,9 @@
             font-weight: 600;
             transition: transform 0.3s, box-shadow 0.3s;
             display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .cta-btn:hover {
@@ -243,6 +246,187 @@
             font-size: 1.1rem;
         }
 
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 6rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.1rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 0.5s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h3 {
+            font-size: 1.5rem;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 8rem 5%;
@@ -296,6 +480,14 @@
 
             .hero-content h1 {
                 font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-header h2 {
+                font-size: 2rem;
             }
         }
 
@@ -404,7 +596,7 @@
             </div>
 
             <div class="service-card fade-in">
-                <div class="service-icon">🌍</div>
+                <div class="service-icon">🌐</div>
                 <h3>Content Creation</h3>
                 <p>Edit and post highlight reels, cinematic trailers, and TikToks from your community gameplay.</p>
             </div>
@@ -428,6 +620,40 @@
         </div>
     </section>
 
+    <section class="contact-form-section" id="contact">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Let's <span class="gradient-text">Connect</span></h2>
+                <p>Tell us about your project and we'll get back to you soon</p>
+            </div>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="from_name" placeholder="Your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="from_email" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Questions / Project Details</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your gaming project, goals, or any questions you have..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Email</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <div class="icon">✅</div>
+                <h3>Message Sent Successfully!</h3>
+                <p>We'll get back to you via email within 12-24 hours.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-section">
         <h2>Ready to <span class="gradient-text">Dominate</span>?</h2>
         <p>Let's turn your gaming community into a thriving empire.</p>
@@ -437,6 +663,59 @@
     <footer>
         <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
     </footer>
+    
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Initialize EmailJS with your Public Key
+        (function() {
+            emailjs.init("_jaNtXrBDRr1EJIuZ");
+        })();
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Send email using EmailJS
+            emailjs.sendForm(
+                'service_5gq9xx6',
+                'template_bw8flq6',
+                this
+            ).then(
+                function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Hide the form
+                    document.getElementById('contactForm').style.display = 'none';
+                    
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('contactForm').reset();
+                        document.getElementById('contactForm').style.display = 'block';
+                        document.getElementById('successMessage').classList.remove('show');
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 5000);
+                },
+                function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send message. Please try again or email us directly.');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            );
+        });
+    </script>
     
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </body>
