@@ -108,12 +108,16 @@
         }
 
         .contact-container {
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
-            text-align: center;
         }
 
-        .contact-container h1 {
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             margin-bottom: 1rem;
@@ -125,174 +129,244 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .contact-container > p {
+        .page-header p {
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 3rem;
         }
 
-        .discord-card {
+        /* Form Container */
+        .form-container {
             background: rgba(255, 255, 255, 0.03);
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            border-radius: 25px;
-            padding: 3rem;
-            transition: all 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 28px;
+            padding: 3.5rem;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        .discord-card::before {
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.1rem 1.4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(99, 102, 241, 0.3);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 8px 24px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 160px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .submit-btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
         }
 
-        .discord-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.6);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
-        .discord-card:hover::before {
-            opacity: 1;
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(99, 102, 241, 0.5);
         }
 
-        .discord-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
+        .submit-btn:active {
+            transform: translateY(-1px);
         }
 
-        .discord-card h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .discord-username {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.2);
-            border: 1px solid rgba(99, 102, 241, 0.4);
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin: 1.5rem 0;
-            position: relative;
-            z-index: 1;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .discord-username:hover {
-            background: rgba(99, 102, 241, 0.3);
-            border-color: rgba(99, 102, 241, 0.6);
-        }
-
-        .copy-icon {
-            margin-left: 0.8rem;
-            font-size: 1.2rem;
-            opacity: 0.7;
-        }
-
-        .discord-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .discord-button {
-            display: inline-block;
-            background: #5865F2;
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-        }
-
-        .discord-button:hover {
-            background: #4752C4;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
-        }
-
-        .info-text {
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 20px;
             margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(168, 85, 247, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
             position: relative;
             z-index: 1;
+            animation: slideInUp 0.6s ease;
         }
 
-        .info-text p {
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .success-message h3 {
+            font-size: 1.8rem;
+            color: #10b981;
+            margin-bottom: 0.75rem;
+            font-weight: 900;
+        }
+
+        .success-message p {
             color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
         .response-time {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             color: rgba(255, 255, 255, 0.6);
             position: relative;
             z-index: 1;
+            font-size: 0.95rem;
         }
 
-        .response-time span {
+        .response-time .status-dot {
             display: inline-block;
             width: 10px;
             height: 10px;
             background: #10b981;
             border-radius: 50%;
-            margin-right: 0.5rem;
-            animation: pulse 2s infinite;
+            margin-right: 0.6rem;
+            animation: pulseStatus 2s infinite;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 2000;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        @keyframes pulseStatus {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
         }
 
         footer {
@@ -300,6 +374,7 @@
             text-align: center;
             border-top: 1px solid rgba(99, 102, 241, 0.2);
             color: rgba(255, 255, 255, 0.5);
+            margin-top: 4rem;
         }
 
         @media (max-width: 768px) {
@@ -323,13 +398,16 @@
                 font-size: 0.85rem;
             }
 
-            .discord-card {
-                padding: 2rem;
+            .form-container {
+                padding: 2rem 1.5rem;
             }
 
-            .discord-username {
-                font-size: 1.2rem;
-                padding: 0.8rem 1.5rem;
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header {
+                margin-bottom: 2.5rem;
             }
 
             .contact-hero {
@@ -353,59 +431,106 @@
 
     <section class="contact-hero">
         <div class="contact-container">
-            <h1>Let's <span class="gradient-text">Connect</span></h1>
-            <p>Ready to take your gaming community to the next level? Reach out on Discord and let's talk.</p>
+            <div class="page-header">
+                <h1>Let's <span class="gradient-text">Build Together</span></h1>
+                <p>Ready to dominate the gaming world? Tell us about your project.</p>
+            </div>
 
-            <div class="discord-card">
-                <div class="discord-icon">💬</div>
-                <h2>Add Me on Discord</h2>
-                
-                <div class="discord-username" onclick="copyUsername()">
-                    wslideagency
-                    <span class="copy-icon">📋</span>
+            <div class="form-container">
+                <div class="form-header">
+                    <div class="form-icon">🚀</div>
+                    <h2>Start Your Journey</h2>
+                    <p>Fill out the form below and we'll reach out within 12-24 hours</p>
                 </div>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="from_email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details & Questions</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your gaming project, community size, goals, and which services interest you..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
 
-                <p>Click the username above to copy it, then add me on Discord to start the conversation. I typically respond within a few hours!</p>
-
-                <a href="https://discord.com" class="discord-button" target="_blank">Open Discord</a>
-
-                <div class="info-text">
-                    <p><strong>What to include in your message:</strong></p>
-                    <p>• Your server/game name and platform (Minecraft, Roblox, etc.)</p>
-                    <p>• Current player count or community size</p>
-                    <p>• What services you're interested in</p>
-                    <p>• Your goals and timeline</p>
+                <div class="success-message" id="successMessage">
+                    <div class="icon">✅</div>
+                    <h3>Message Received!</h3>
+                    <p>Thanks for reaching out! We'll review your message and get back to you via email within 12-24 hours.</p>
                 </div>
 
                 <div class="response-time">
-                    <span></span>
-                    Usually responds within 2-4 hours
+                    <span class="status-dot"></span>
+                    Average response time: 12-24 hours
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="toast" id="toast">✓ Username copied to clipboard!</div>
-
     <footer>
         <p>&copy; 2025 WSLIDE Gaming Marketing Agency. All rights reserved.</p>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <script>
-        function copyUsername() {
-            const username = 'wslideagency';
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("_jaNtXrBDRr1EJIuZ");
+        })();
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            navigator.clipboard.writeText(username).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
-        }
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Send email using EmailJS
+            emailjs.sendForm(
+                'service_5gq9xx6',
+                'template_bw8flq6',
+                this
+            ).then(
+                function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Hide the form
+                    document.getElementById('contactForm').style.display = 'none';
+                    
+                    // Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('contactForm').reset();
+                        document.getElementById('contactForm').style.display = 'block';
+                        document.getElementById('successMessage').classList.remove('show');
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 6000);
+                },
+                function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send message. Please try again or contact us directly at wslideagency@outlook.com');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            );
+        });
     </script>
     
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
